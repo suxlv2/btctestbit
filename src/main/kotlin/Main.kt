@@ -20,8 +20,11 @@ fun main(args: Array<String>) {
 
 private fun validate(musicalPiece: MusicalPiece) {
     musicalPiece.notes.forEach {
-        if (it.octave == -3 && it.note == 10 || it.octave == 5 && it.note == 1)
-            throw Exception("input is out of keyboard range")
+        if (it.octave < -3
+            || (it.octave == -3 && it.note < 10)
+            || it.octave > 5
+            || (it.octave == 5 && it.note > 1)
+        ) throw Exception("input is out of keyboard range")
     }
 }
 
